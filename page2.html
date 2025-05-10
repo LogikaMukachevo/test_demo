@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Балансовий звіт</title>
+		<style>
+			 * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border: 1px solid #dee2e6;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+    }
+
+    td input[type="text"],
+    td input[type="number"] {
+      width: 100%;
+      padding: 6px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      background-color: transparent;
+      font-size: 14px;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    td input[type="text"]:focus,
+    td input[type="number"]:focus {
+      border-bottom: 2px solid #007bff;
+      outline: none;
+      background-color: #eaf4ff;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .buttons button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .buttons button:active {
+      background-color: #003f7f;
+      transform: scale(0.95);
+    }
+
+    @media screen and (max-width: 768px) {
+      table,
+      th,
+      td {
+        font-size: 13px;
+      }
+
+      .buttons button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h2>
+				Форма № 1 та № 2 <br />
+				Звіт про фінансовий стан
+			</h2>
+			<table>
+				<tr>
+					<th>Показник</th>
+					<th>Значення</th>
+				</tr>
+				<tr>
+					<td><strong>Назва компанії:</strong></td>
+					<td><input type="text" id="companyName" /></td>
+				</tr>
+				<tr>
+					<td>Термін існування підприємства <strong>(роки)</strong></td>
+					<td><input type="number" id="years" /></td>
+				</tr>
+				<tr>
+					<td>
+						Градація аналізу прибутків та збитків <strong>(від 0 до 5)</strong>
+					</td>
+					<td><input type="number" id="gradation" min="0" max="5" /></td>
+				</tr>
+				<tr>
+					<td>Найбільша сума отриманого і повернутого кредиту</td>
+					<td><input type="number" id="sk" /></td>
+				</tr>
+				<tr>
+					<td>Сума запитуваного кредиту</td>
+					<td><input type="number" id="s" /></td>
+				</tr>
+				<tr>
+					<td>Кількість власних коштів в інвестицію</td>
+					<td><input type="number" id="k" /></td>
+				</tr>
+				<tr>
+					<td>Вартість власного ліквідного майна</td>
+					<td><input type="number" id="m" /></td>
+				</tr>
+			</table>
+
+			<br />
+			<br />
+			<br />
+
+			<div class="container">
+				<h2>Група G<sub>3</sub> – ефективність управління підприємством</h2>
+				<table>
+					<tr>
+						<th>Показник</th>
+						<th>Значення</th>
+					</tr>
+					<tr>
+						<td>Коефіцієнт найбільшої суми раніше повернутого кредиту</td>
+						<td><input type="number" id="k8" readonly /></td>
+					</tr>
+					<tr>
+						<td>Критерій термін існування підприємства (вказуються у роках функціонування)
+						</td>
+						<td><input type="number" id="k9" readonly /></td>
+					</tr>
+					<tr>
+						<td>Коефіцієнт питомої ваги коштів підприємства у вартості кредитного проекту</td>
+						<td><input type="number" id="k10" readonly /></td>
+					</tr>
+					<tr>
+						<td>
+							Коефіцієнт наявності власного ліквідного майна – K<sub>11</sub>
+						</td>
+						<td><input type="number" id="k11" readonly /></td>
+					</tr>
+				</table>
+
+				<div class="buttons">
+					<button onclick="window.print()">Друк</button>
+					<button onclick="calculateG3Coefficients()">Оновити розрахунки</button>
+					<button onclick="location.href='../Form_1/index.html'">
+						Форма № 1
+					</button>
+					<button onclick="location.href='../Form_2/index.html'">
+						Форма № 2
+					</button>
+					<button onclick="location.href='../Form_3/index.html'">
+						Форма № 3
+					</button>
+				</div>
+			</div>
+
+			<script src="script.js"></script>
+	</body>
+
+</html>
